@@ -2,11 +2,15 @@ require 'rubygems'
 require 'terminal-table/import'
 def op3(pila_opcion1)
     libro=pila_opcion1[:tope]
-    puts libro[:nombre],[:autor],[:ISBN],[:Precio]
     begin
         nuevo_libro = libro[:siguiente]
         libro=nuevo_libro
-        puts table(['ISBN', 'nombre', 'cantidad'],[libro[:ISBN],libro[:nombre], libro[:Precio]],[n2, 4, 0],:separator,[4, 6, 'conenidos'])
+        t = table ['ISBN', 'NOMBRE LIBRO']
+        t << [libro[:ISBN], libro[:nombre]]
+        t << [3, 4]
+        t.add_separator
+        t << [4, 6]
+        puts t
     end while libro[:siguiente]!=nil
     gets()
 end
@@ -32,7 +36,7 @@ def op1(pila_opcion1)
     max2+=1
     libro[:siguente] = pila_opcion1[:tope]
     pila_opcion1[:tope] = libro
-    aux = libro
+    aux = pila_opcion1[:tope]
     elsif aux[:ISBN] == isbn
       puts 'El ISBN ya existe'
     else 
